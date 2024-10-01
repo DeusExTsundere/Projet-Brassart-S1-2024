@@ -25,12 +25,11 @@ public class TargetForward : MonoBehaviour
         }
         else
         {
-            mouseMove.y -= Input.GetAxis("Mouse X");
-            mouseMove.x += Input.GetAxis("Mouse Y");
+            mouseMove.y += Input.GetAxis("Mouse X");
+            mouseMove.x -= Input.GetAxis("Mouse Y");
             mouseMove.z = 0;
             transform.rotation = Quaternion.Euler(mouseMove);
         }
-
         Debug.DrawRay(transform.position, transform.forward * 100, Color.red); // Laser pour connaitre la directionn de l'objet
     }
 
