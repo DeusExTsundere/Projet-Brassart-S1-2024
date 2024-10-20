@@ -26,20 +26,20 @@ public class timer : MonoBehaviour
 
     void Update()
     {
-        if (Mathf.FloorToInt(temps) > 0 && isActive)
+        if (Mathf.Round(temps) > 0 && isActive)
         {
             temps -= Time.deltaTime;
             ConvertSeconds();
-            chrono.SetText("Temps Restant : " + minutes + " : " + Mathf.FloorToInt(secondes));
+            chrono.SetText("Temps Restant : " + minutes + " : " + Mathf.Round(secondes));
         }
     }
 
     void ConvertSeconds()
     {
         minutes = temps / 60;
-        minutes = Mathf.FloorToInt(minutes);      
+        minutes = Mathf.Round(minutes);      
         secondes = (temps-( minutes*60));
-        secondes = Mathf.FloorToInt(secondes);
+        secondes = Mathf.Round(secondes);
     }
 
 }

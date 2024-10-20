@@ -15,12 +15,10 @@ public class Choix : MonoBehaviour
         for (int i = 0; i < choixPage1.Length; i++)
         {
             choixPage1[i].enabled = false;
-            Debug.Log("A");
         }
         for (int j = 0;j < choixPage2.Length; j++)
         {
             choixPage2[j].enabled = false;
-            Debug.Log("B");
         }
     }
 
@@ -33,7 +31,7 @@ public class Choix : MonoBehaviour
             {
                 choixPage2[i].enabled = false;
             }
-            for(int j = 0; j< choixPage1.Length; j++)
+            for (int j = 0; j < choixPage1.Length; j++)
             {
                 choixPage1[j].enabled = true;
             }
@@ -49,12 +47,12 @@ public class Choix : MonoBehaviour
         else if (choix2.isOn)
         {
             choix1.enabled = false;
-            for (int i = 0;i < choixPage1.Length; i++)
+            for (int i = 0; i < choixPage1.Length; i++)
             {
                 choixPage1[i].enabled = false;
             }
 
-            for (int j = 0;j < choixPage2.Length; j++)
+            for (int j = 0; j < choixPage2.Length; j++)
             {
                 choixPage2[j].enabled = true;
             }
@@ -67,5 +65,6 @@ public class Choix : MonoBehaviour
                 choixPage2[0].enabled = false;
             }
         }
+
     }
 }

@@ -6,22 +6,20 @@ using UnityEngine.InputSystem;
 
 public class TargetForward : MonoBehaviour
 {
-
-    [SerializeField] private Vector3 positionReading;
+    [SerializeField] private GameObject positionReading;
+    private RaycastHit hit;
     private bool reading = false;
     private bool isReadable = false;
     private Vector3 mouseMove = new (0,0,0);
-    private bool visibilty_cursor = false;
     private void Start()
     {
         Cursor.visible = false;
-        positionReading = transform.position;
     }
     void Update()
     {
         if (reading)
         {
-            transform.position = positionReading;
+            transform.LookAt(positionReading.transform.position);
         }
         else
         {
@@ -31,6 +29,10 @@ public class TargetForward : MonoBehaviour
             transform.rotation = Quaternion.Euler(mouseMove);
         }
         Debug.DrawRay(transform.position, transform.forward * 100, Color.red); // Laser pour connaitre la directionn de l'objet
+        if (Physics.Raycast(transform.position, transform.forward , out hit , Mathf.Infinity))
+        {
+            
+        }
     }
 
     public void objectAction(InputAction.CallbackContext context)
