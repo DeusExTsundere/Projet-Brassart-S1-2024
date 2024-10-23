@@ -1,4 +1,3 @@
-using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +6,6 @@ using UnityEngine.InputSystem;
 public class TargetForward : MonoBehaviour
 {
     [SerializeField] private GameObject positionReading;
-    private bool targetReading;
     private RaycastHit hit;
     private bool reading = false;
     private bool isReadable = false;
@@ -16,11 +14,29 @@ public class TargetForward : MonoBehaviour
     private void Start()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     void Update()
     {
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 30f))
+        {
+            if (hit.collider.gameObject.GetComponent<OnCall>())
+            {
+                isReadable = true;
+                hit.collider.gameObject.GetComponent<OnCall>().Reading = reading;
+            }
+        }
+        else
+        {
+            isReadable = false;
+        }
         playerRotation.y += mouseMove.x;
         playerRotation.x -= mouseMove.y;
+        Debug.DrawRay(transform.position, transform.forward * 30, Color.red); // Laser pour connaitre la direction de l'objet
+    }
+
+    private void LateUpdate()
+    {
         if (reading)
         {
             transform.LookAt(positionReading.transform.position);
@@ -28,24 +44,6 @@ public class TargetForward : MonoBehaviour
         else
         {
             transform.rotation = Quaternion.Euler(playerRotation);
-        }
-        Debug.DrawRay(transform.position, transform.forward * 100, Color.red); // Laser pour connaitre la directionn de l'objet
-        if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
-        {
-            if (hit.collider.gameObject.GetComponent<MoveClick>())
-            {
-                targetReading = hit.collider.gameObject.GetComponent<MoveClick>().Reading;
-                //Debug.LogError(hit.collider.gameObject.GetComponent<MoveClick>().Reading);
-                isReadable = true;
-                if (reading)
-                {
-                    hit.collider.gameObject.GetComponent<MoveClick>().Reading = true;
-                }
-                else if (reading!)
-                {
-
-                }
-            }
         }
     }
 
@@ -66,13 +64,16 @@ public class TargetForward : MonoBehaviour
         if (isReadable && context.started)
         {
             reading = true;
-            Debug.Log("input ok");
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 
     public void undoObjectAction(InputAction.CallbackContext context)
     {
         reading = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 }

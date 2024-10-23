@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MoveClick : MonoBehaviour
+public class OnCall : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private GameObject positionRead;
+    [SerializeField] private GameObject uiCall;
 
     private Vector3 initialPosition;
     [SerializeField] private bool reading = false;
@@ -32,11 +33,13 @@ public class MoveClick : MonoBehaviour
         {
             transform.position = positionRead.transform.position;
             clickable = false;
+            uiCall.SetActive(true);
         }
         else
         {
-            transform .position = initialPosition;
+            transform.position = initialPosition;
             clickable = true;
+            uiCall.SetActive(false);
         }
     }
 
