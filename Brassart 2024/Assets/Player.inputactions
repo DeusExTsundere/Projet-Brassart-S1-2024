@@ -27,7 +27,7 @@
                     "name": "Caméra Control",
                     "type": "Value",
                     "id": "7a4840c8-551f-4381-8c7e-fb175b708dfd",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -58,19 +58,8 @@
                 },
                 {
                     "name": "",
-                    "id": "b4e5f58b-fc2f-40b3-a184-49f578968489",
-                    "path": "<Mouse>/position/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Caméra Control",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6045d246-d7c4-4915-9a75-65d5174749bf",
-                    "path": "<Mouse>/position/y",
+                    "id": "8904c836-e34e-463a-acd3-9945ae46baa7",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -40,6 +40,11 @@ public class MoveClick : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log("Trigger");
+    }
+
     public void resetClickable(InputAction.CallbackContext context)
     {
         if (!clickable && context.started)
