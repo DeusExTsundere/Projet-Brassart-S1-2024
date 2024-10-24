@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class timer : MonoBehaviour
+public class RemainingTime : MonoBehaviour
 {
     private TextMeshProUGUI chrono;
     [SerializeField] private float temps;

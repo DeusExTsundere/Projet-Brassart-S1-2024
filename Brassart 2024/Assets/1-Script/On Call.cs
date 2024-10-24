@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class OnCall : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private GameObject positionRead;
+    [SerializeField] private GameObject positionCalling;
     [SerializeField] private GameObject uiCall;
-
+    [SerializeField] private GameObject remainTime;
     private Vector3 initialPosition;
-    [SerializeField] private bool reading = false;
-    public bool Reading 
+    private bool actuallyOnCall = false;
+    public bool ActuallyOnCall 
     { 
-        get { return reading; } 
-        set { reading = value; }
+        get { return actuallyOnCall; } 
+        set { actuallyOnCall = value; }
     }
     private bool clickable = true;
     public bool Clickable 
@@ -29,23 +30,21 @@ public class OnCall : MonoBehaviour
 
     private void Update()
     {
-        if (reading)
+        if (actuallyOnCall)
         {
-            transform.position = positionRead.transform.position;
+            transform.position = positionCalling.transform.position;
             clickable = false;
             uiCall.SetActive(true);
+            remainTime.gameObject.GetComponent<RemainingTime>().IsActive = true;
         }
         else
         {
             transform.position = initialPosition;
             clickable = true;
             uiCall.SetActive(false);
-        }
-    }
+            remainTime.gameObject.GetComponent<RemainingTime>().IsActive = false;
 
-    private void OnTriggerStay(Collider other)
-    {
-        Debug.Log("Trigger");
+        }
     }
 
     public void resetClickable(InputAction.CallbackContext context)
@@ -53,7 +52,7 @@ public class OnCall : MonoBehaviour
         if (!clickable && context.started)
         {
             clickable = true;
-            reading = false;
+            actuallyOnCall = false;
         }
     }
 }
