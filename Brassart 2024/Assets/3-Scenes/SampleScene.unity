@@ -2256,7 +2256,7 @@ GameObject:
   - component: {fileID: 898016717}
   - component: {fileID: 898016716}
   m_Layer: 0
-  m_Name: calliingPosition
+  m_Name: callingPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
